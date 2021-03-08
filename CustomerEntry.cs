@@ -158,7 +158,16 @@ namespace CustomerViewer
         /// <returns></returns>
         private bool IsWorkerValid(string title, string firstName, string lastName)
         {
-            return false;
+            bool isValid = true;
+
+            // Check the first input.
+            // If it's not valid, set isValid = false and write an error message.
+            // Check the second input.
+            // If it's not valid, set isValid = false and write an error message.
+            // Check the third input.
+            // If it's not valid, set isValid = false and write an error message.
+
+            return isValid;
         }
 
         #endregion
