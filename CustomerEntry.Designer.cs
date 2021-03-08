@@ -1,7 +1,7 @@
 ﻿
 namespace CustomerViewer
 {
-    partial class CustomerEntry
+    partial class formCustomerEntry
     {
         /// <summary>
         /// Required designer variable.
@@ -42,10 +42,10 @@ namespace CustomerViewer
             this.buttonReset = new System.Windows.Forms.Button();
             this.buttonEnter = new System.Windows.Forms.Button();
             this.listViewEntries = new System.Windows.Forms.ListView();
+            this.columnHeaderVip = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderTitle = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderFirstName = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderLastName = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderVip = new System.Windows.Forms.ColumnHeader();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
@@ -145,6 +145,7 @@ namespace CustomerViewer
             this.buttonExit.Text = "E&xit";
             this.toolTip.SetToolTip(this.buttonExit, "Click to exit the application");
             this.buttonExit.UseVisualStyleBackColor = true;
+            this.buttonExit.Click += new System.EventHandler(this.ButtonExitClick);
             // 
             // buttonReset
             // 
@@ -155,6 +156,7 @@ namespace CustomerViewer
             this.buttonReset.Text = "&Reset";
             this.toolTip.SetToolTip(this.buttonReset, "Click to reset all entry fields");
             this.buttonReset.UseVisualStyleBackColor = true;
+            this.buttonReset.Click += new System.EventHandler(this.ButtonResetClick);
             // 
             // buttonEnter
             // 
@@ -165,6 +167,7 @@ namespace CustomerViewer
             this.buttonEnter.Text = "&Enter";
             this.toolTip.SetToolTip(this.buttonEnter, "Click to enter the current customer");
             this.buttonEnter.UseVisualStyleBackColor = true;
+            this.buttonEnter.Click += new System.EventHandler(this.ButtonEnterClick);
             // 
             // listViewEntries
             // 
@@ -174,6 +177,7 @@ namespace CustomerViewer
             this.columnHeaderTitle,
             this.columnHeaderFirstName,
             this.columnHeaderLastName});
+            this.listViewEntries.FullRowSelect = true;
             this.listViewEntries.HideSelection = false;
             this.listViewEntries.Location = new System.Drawing.Point(12, 157);
             this.listViewEntries.MultiSelect = false;
@@ -183,6 +187,13 @@ namespace CustomerViewer
             this.toolTip.SetToolTip(this.listViewEntries, "Display a list of all customers");
             this.listViewEntries.UseCompatibleStateImageBehavior = false;
             this.listViewEntries.View = System.Windows.Forms.View.Details;
+            this.listViewEntries.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.PreventCheck);
+            this.listViewEntries.SelectedIndexChanged += new System.EventHandler(this.WorkerSelected);
+            // 
+            // columnHeaderVip
+            // 
+            this.columnHeaderVip.Text = "VIP?";
+            this.columnHeaderVip.Width = 30;
             // 
             // columnHeaderTitle
             // 
@@ -199,15 +210,12 @@ namespace CustomerViewer
             this.columnHeaderLastName.Text = "Last Name";
             this.columnHeaderLastName.Width = 120;
             // 
-            // columnHeaderVip
+            // formCustomerEntry
             // 
-            this.columnHeaderVip.Text = "VIP?";
-            this.columnHeaderVip.Width = 30;
-            // 
-            // CustomerEntry
-            // 
+            this.AcceptButton = this.buttonEnter;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.buttonReset;
             this.ClientSize = new System.Drawing.Size(382, 553);
             this.Controls.Add(this.listViewEntries);
             this.Controls.Add(this.buttonEnter);
@@ -221,8 +229,12 @@ namespace CustomerViewer
             this.Controls.Add(this.labelLastName);
             this.Controls.Add(this.labelFirstName);
             this.Controls.Add(this.labelTitle);
-            this.Name = "CustomerEntry";
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "formCustomerEntry";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Customer Entry";
+            this.Load += new System.EventHandler(this.FormLoad);
             this.ResumeLayout(false);
             this.PerformLayout();
 
