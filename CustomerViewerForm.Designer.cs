@@ -125,6 +125,7 @@ namespace CustomerViewer
             // 
             // buttonPrevious
             // 
+            this.buttonPrevious.Enabled = false;
             this.buttonPrevious.Location = new System.Drawing.Point(24, 251);
             this.buttonPrevious.Name = "buttonPrevious";
             this.buttonPrevious.Size = new System.Drawing.Size(94, 29);
@@ -180,9 +181,10 @@ namespace CustomerViewer
             // 
             // comboBoxTitle
             // 
-            this.comboBoxTitle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxTitle.Enabled = false;
             this.comboBoxTitle.FormattingEnabled = true;
             this.comboBoxTitle.Items.AddRange(new object[] {
+            "",
             "Dr.",
             "Duchess",
             "Duke",

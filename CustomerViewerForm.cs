@@ -1,6 +1,6 @@
-﻿// Last Modified By:    Kyle Chapman (or your name here)
+﻿// Last Modified By:    Kyle Chapman
 // Original Date:       March 1, 2021
-// Last Modified Date:  March 1, 2021
+// Last Modified Date:  March 8, 2021
 // Project Name:        CustomerViewer
 // Description:
 //  Using the existing Customer class, this is a simple form designed to toggle
@@ -23,11 +23,7 @@ namespace CustomerViewer
         // Declare a collection of all customers as a List.
         private List<Customer> customerList = new List<Customer>();
         // An index representing the current selected customer.
-        private int currentIndex = 4;
-
-        // Minimum and maximum indexes; should match the number of records set up below.
-        private const int MinimumIndex = 0;
-        private const int MaximumIndex = 4;
+        private int currentIndex = 0;
 
         public formCustomerViewer()
         {
@@ -44,10 +40,17 @@ namespace CustomerViewer
             // Declare and instantiate five new customer objects.
             // You are going to be asked to change some of these values.
             Customer kyle = new Customer("Mr.", "Kyle", "Chapman", true);
-            Customer yourNameHere = new Customer("", "", "", true);
-            Customer someoneElse = new Customer("", "", "", true);
-            Customer fourthPerson = new Customer();
-            Customer everyoneIsImportant = new Customer("", "", "", false);
+            // yourNameHere -> make this one YOU
+            Customer yourNameHere = new Customer("", "Kyle", "Chapman", true);
+            // someoneElse -> make this one... someone who is visible in class today
+            Customer someoneElse = new Customer("Sir", "Kamrin", "Aubin", true);
+            // fourthPerson -> lead singer of your favourite band
+            Customer fourthPerson = new Customer("", "Mark Oliver", "Everett", true);
+            // everyoneIsImportant -> whatever
+            Customer everyoneIsImportant = new Customer("Lady", "Scape", "Goat", false);
+            Customer sixthCustomer = new Customer("Lucky", "Number", "Six", true);
+
+            // ^ make sure all five of these are valid people, with no blank names.
 
             // Add all of the new customer objects from above to the list.
             customerList.Add(kyle);
@@ -55,22 +58,22 @@ namespace CustomerViewer
             customerList.Add(someoneElse);
             customerList.Add(fourthPerson);
             customerList.Add(everyoneIsImportant);
+            customerList.Add(sixthCustomer);
 
             // Call ViewCustomer and display the first customer object.
             ViewCustomer(currentIndex);
         }
 
         /// <summary>
-        /// Shows the previous customer in the list, populating all fields with information related to the previous customer; displays an error message if there are no prior customers in the list
+        /// Shows the previous customer in the list, populating all fields with information related to that customer
         /// </summary>
         private void PreviousButton(object sender, EventArgs e)
         {
             // Go to the previous customer in the list.
             currentIndex -= 1;
 
-            // If we can view their info, that's great.
-            // If we can't view their info then we are at the start of the list.
-            if (!ViewCustomer(currentIndex))
+            // If we can view their info, that's great. Check if we are at the start of the list.
+            if (!ViewCustomer(currentIndex) || currentIndex <= 0)
             {
                 // Since we're at the start of the list, don't go back further
                 // and disable the Previous button.
@@ -82,19 +85,59 @@ namespace CustomerViewer
             buttonNext.Enabled = true;
         }
 
+        /// <summary>
+        /// Shows the next customer in the list, populating all fields with information related to that customer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NextButton(object sender, EventArgs e)
         {
+            // Go to the next customer in the list.
+            currentIndex++;
 
+            // If we can view their info, that's great. Check if we are at the end of the list.
+            if (!ViewCustomer(currentIndex) || currentIndex >= customerList.Count - 1)
+            {
+                // Since we're at the end of the list, don't go further
+                // and disable the Next button.
+                currentIndex = customerList.Count - 1;
+                buttonNext.Enabled = false;
+            }
+
+            // We know we're not at the end of the list, so allow the Next button.
+            buttonPrevious.Enabled = true;
         }
 
+        /// <summary>
+        /// Shows the first customer in the list, populating all fields with information related to this customer.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FirstButton(object sender, EventArgs e)
         {
+            // Go to the first customer in the list.
+            currentIndex = 0;
 
+            ViewCustomer(currentIndex);
+
+            // We know we're at the start of the list, so disable the Previous button and enable the Next button.
+            buttonPrevious.Enabled = false;
+            buttonNext.Enabled = true;
         }
 
+        /// <summary>
+        /// Shows the final customer in the list, populating all fields with information related to this customer.
+        /// </summary>
         private void LastButton(object sender, EventArgs e)
         {
+            // Go to the last customer in the list.
+            currentIndex = customerList.Count - 1;
 
+            ViewCustomer(currentIndex);
+            
+            // We know we're at the end of the list, so allow the Previous button and disable the Next button.
+            buttonPrevious.Enabled = true;
+            buttonNext.Enabled = false;
         }
 
         /// <summary>
@@ -113,7 +156,7 @@ namespace CustomerViewer
         private bool ViewCustomer(int listIndex)
         {
             // If the current listIndex is in range...
-            if (listIndex >= MinimumIndex && listIndex <= MaximumIndex)
+            if (listIndex >= 0 && listIndex <= customerList.Count - 1)
             {
                 // Populate the various fields with the relevant customer info.
                 textBoxIdentificationNumber.Text = customerList[listIndex].Id.ToString();
