@@ -32,28 +32,16 @@ namespace CustomerViewer
             // Declare and instantiate five new customer objects.
             // You are going to be asked to change some of these values.
             Customer kyle = new Customer("Mr.", "Kyle", "Chapman", true);
-            // yourNameHere -> make this one YOU
-            Customer yourNameHere = new Customer("", "Kyle", "Chapman", true);
-            // someoneElse -> make this one... someone who is visible in class today
-            Customer someoneElse = new Customer("Sir", "Kamrin", "Aubin", true);
-            // fourthPerson -> lead singer of your favourite band
-            Customer fourthPerson = new Customer("", "Mark Oliver", "Everett", true);
             // everyoneIsImportant -> whatever
             Customer everyoneIsImportant = new Customer("Lady", "Scape", "Goat", false);
             Customer sixthCustomer = new Customer("Lucky", "Number", "Six", true);
 
             // Add all of the new customer objects from above to the list.
             customerList.Add(kyle);
-            customerList.Add(yourNameHere);
-            customerList.Add(someoneElse);
-            customerList.Add(fourthPerson);
             customerList.Add(everyoneIsImportant);
             customerList.Add(sixthCustomer);
 
             AddToListView(kyle);
-            AddToListView(yourNameHere);
-            AddToListView(someoneElse);
-            AddToListView(fourthPerson);
             AddToListView(everyoneIsImportant);
             AddToListView(sixthCustomer);
         }
@@ -83,9 +71,9 @@ namespace CustomerViewer
         }
 
         /// <summary>
-        /// When a worker in the ListView is selected, write that worker's properties into the input controls.
+        /// When a customer in the ListView is selected, write that customer's properties into the input controls.
         /// </summary>
-        private void WorkerSelected(object sender, EventArgs e)
+        private void CustomerSelected(object sender, EventArgs e)
         {
             if (listViewEntries.Items.Count > 0 && listViewEntries.FocusedItem != null)
             {

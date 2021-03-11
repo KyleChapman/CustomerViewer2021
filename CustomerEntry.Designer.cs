@@ -178,6 +178,7 @@ namespace CustomerViewer
             this.columnHeaderFirstName,
             this.columnHeaderLastName});
             this.listViewEntries.FullRowSelect = true;
+            this.listViewEntries.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.listViewEntries.HideSelection = false;
             this.listViewEntries.Location = new System.Drawing.Point(12, 157);
             this.listViewEntries.MultiSelect = false;
@@ -188,12 +189,12 @@ namespace CustomerViewer
             this.listViewEntries.UseCompatibleStateImageBehavior = false;
             this.listViewEntries.View = System.Windows.Forms.View.Details;
             this.listViewEntries.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.PreventCheck);
-            this.listViewEntries.SelectedIndexChanged += new System.EventHandler(this.WorkerSelected);
+            this.listViewEntries.SelectedIndexChanged += new System.EventHandler(this.CustomerSelected);
             // 
             // columnHeaderVip
             // 
             this.columnHeaderVip.Text = "VIP?";
-            this.columnHeaderVip.Width = 30;
+            this.columnHeaderVip.Width = 45;
             // 
             // columnHeaderTitle
             // 
