@@ -47,6 +47,8 @@ namespace CustomerViewer
             this.columnHeaderFirstName = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderLastName = new System.Windows.Forms.ColumnHeader();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // comboBoxTitle
@@ -211,6 +213,29 @@ namespace CustomerViewer
             this.columnHeaderLastName.Text = "Last Name";
             this.columnHeaderLastName.Width = 120;
             // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(38, 125);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            2021,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            1921,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.ReadOnly = true;
+            this.numericUpDown1.Size = new System.Drawing.Size(79, 27);
+            this.numericUpDown1.TabIndex = 12;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            2021,
+            0,
+            0,
+            0});
+            // 
             // formCustomerEntry
             // 
             this.AcceptButton = this.buttonEnter;
@@ -218,6 +243,7 @@ namespace CustomerViewer
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonReset;
             this.ClientSize = new System.Drawing.Size(382, 553);
+            this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.listViewEntries);
             this.Controls.Add(this.buttonEnter);
             this.Controls.Add(this.buttonReset);
@@ -236,6 +262,7 @@ namespace CustomerViewer
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Customer Entry";
             this.Load += new System.EventHandler(this.FormLoad);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -260,5 +287,6 @@ namespace CustomerViewer
         private System.Windows.Forms.ColumnHeader columnHeaderFirstName;
         private System.Windows.Forms.ColumnHeader columnHeaderLastName;
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
     }
 }

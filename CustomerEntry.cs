@@ -13,7 +13,11 @@ namespace CustomerViewer
     public partial class formCustomerEntry : Form
     {
         private List<Customer> customerList = new List<Customer>();
+        // This flag is used to indicate whether the program is checking boxes as opposed to a human.
         private bool isAutomated = false;
+        // Variable representing the current selected index in the ListView.
+        // This is being used to simplify a few reference to indexes.
+        private int selectedIndex = -1;
 
         public formCustomerEntry()
         {
@@ -41,9 +45,7 @@ namespace CustomerViewer
             customerList.Add(everyoneIsImportant);
             customerList.Add(sixthCustomer);
 
-            AddToListView(kyle);
-            AddToListView(everyoneIsImportant);
-            AddToListView(sixthCustomer);
+            PopulateListView(customerList);
         }
 
         /// <summary>
@@ -51,7 +53,33 @@ namespace CustomerViewer
         /// </summary>
         private void ButtonEnterClick(object sender, EventArgs e)
         {
+            // Empty the error label; it will fill with NEW errors if anything is wrong.
+            labelError.Text = String.Empty;
 
+            // Check if the customer is valid.
+            if (IsCustomerValid(comboBoxTitle.Text, textBoxFirstName.Text, textBoxLastName.Text))
+            {
+                // Customer details are valid; create a customer object.
+                Customer newCustomerToAdd = new Customer(comboBoxTitle.Text, textBoxFirstName.Text, textBoxLastName.Text, checkBoxVip.Checked);
+
+                // If a customer is currently selected...
+                if (selectedIndex >= 0)
+                {
+                    // Replace the old version of that customer with the new one!
+                    customerList[selectedIndex] = newCustomerToAdd;
+                }
+                else
+                {
+                    // Otherwise, add a customer with the entered details to the end of the list.
+                    customerList.Add(newCustomerToAdd);
+                }
+
+                // Refresh the entire listView.
+                PopulateListView(customerList);
+
+                // Reset the form to allow new entries.
+                SetDefaults();
+            }
         }
 
         /// <summary>
@@ -75,12 +103,22 @@ namespace CustomerViewer
         /// </summary>
         private void CustomerSelected(object sender, EventArgs e)
         {
+            // If the list is populated and something is selected...
             if (listViewEntries.Items.Count > 0 && listViewEntries.FocusedItem != null)
             {
+                // ...fill in the entry fields with values based on the selected customer.
                 comboBoxTitle.Text = listViewEntries.FocusedItem.SubItems[1].Text;
                 textBoxFirstName.Text = listViewEntries.FocusedItem.SubItems[2].Text;
                 textBoxLastName.Text = listViewEntries.FocusedItem.SubItems[3].Text;
                 checkBoxVip.Checked = listViewEntries.FocusedItem.Checked;
+
+                // Set the selectedIndex to match the listView.
+                selectedIndex = listViewEntries.FocusedItem.Index;
+            }
+            else
+            {
+                // If nothing is selected, set the selectedIndex to -1.
+                selectedIndex = -1;
             }
         }
 
@@ -104,22 +142,30 @@ namespace CustomerViewer
         /// Converts the customer passed in to a ListViewItem and adds it to listViewEntries
         /// </summary>
         /// <param name="newCustomer"></param>
-        private void AddToListView(Customer newCustomer)
+        private void PopulateListView(List<Customer> customerList)
         {
-            // Declare and instantiate a new ListViewItem.
-            ListViewItem customerItem = new ListViewItem();
+            // Clear the listView to start re-populating it.
+            listViewEntries.Items.Clear();
 
-            isAutomated = true;
-            customerItem.Checked = newCustomer.VipStatus;
-            
-            customerItem.SubItems.Add(newCustomer.Title);
-            customerItem.SubItems.Add(newCustomer.FirstName);
-            customerItem.SubItems.Add(newCustomer.LastName);
+            foreach (Customer newCustomer in customerList)
+            {
+                // Declare and instantiate a new ListViewItem.
+                ListViewItem customerItem = new ListViewItem();
 
-            // Add the customerItem to the ListView.
-            listViewEntries.Items.Add(customerItem);
-            
-            isAutomated = false;
+                // Allow the program to modify the ListView's checkboxes.
+                isAutomated = true;
+                customerItem.Checked = newCustomer.VipStatus;
+
+                customerItem.SubItems.Add(newCustomer.Title);
+                customerItem.SubItems.Add(newCustomer.FirstName);
+                customerItem.SubItems.Add(newCustomer.LastName);
+
+                // Add the customerItem to the ListView.
+                listViewEntries.Items.Add(customerItem);
+
+                // Disallow the user from modifying the ListView's checkboxes.
+                isAutomated = false;
+            }
         }
 
         /// <summary>
@@ -132,6 +178,9 @@ namespace CustomerViewer
             textBoxFirstName.Clear();
             textBoxLastName.Clear();
             checkBoxVip.Checked = false;
+            listViewEntries.SelectedItems.Clear();
+            labelError.Text = String.Empty;
+            selectedIndex = -1;
 
             // Set a default focus.
             comboBoxTitle.Focus();
@@ -146,14 +195,30 @@ namespace CustomerViewer
         /// <returns></returns>
         private bool IsCustomerValid(string title, string firstName, string lastName)
         {
+            // Assume the worker is valid.
             bool isValid = true;
 
             // Check the first input.
-            // If it's not valid, set isValid = false and write an error message.
+            if (title == String.Empty)
+            {
+                // If it's not valid, set isValid = false and write an error message.
+                isValid &= false;
+                labelError.Text += "You must select a title.\n";
+            }
             // Check the second input.
-            // If it's not valid, set isValid = false and write an error message.
+            if (firstName == String.Empty)
+            {
+                // If it's not valid, set isValid = false and write an error message.
+                isValid &= false;
+                labelError.Text += "You must enter a first name.\n";
+            }
             // Check the third input.
-            // If it's not valid, set isValid = false and write an error message.
+            if (lastName == String.Empty)
+            {
+                // If it's not valid, set isValid = false and write an error message.
+                isValid &= false;
+                labelError.Text += "You must enter a last name.";
+            }
 
             return isValid;
         }
