@@ -1,4 +1,11 @@
-﻿// No comment header? Kinda gross.
+﻿// Author:          Kyle Chapman
+// Last Modified:   March 11, 2021
+// Description:
+//  Demo program for NETD 2202 based off of Class Exercise 4 in 2021.
+//  Meant as an aid for Lab 4. Using an existing Customer class, this
+//  Windows form can display a list of customers and allow the user
+//  to add new customers to the list as well as edit existing customers
+//  selected from a ListView.
 
 using System;
 using System.Collections.Generic;

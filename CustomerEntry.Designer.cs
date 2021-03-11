@@ -47,8 +47,6 @@ namespace CustomerViewer
             this.columnHeaderFirstName = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderLastName = new System.Windows.Forms.ColumnHeader();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // comboBoxTitle
@@ -68,7 +66,7 @@ namespace CustomerViewer
             "Ms.",
             "Mx.",
             "Sir"});
-            this.comboBoxTitle.Location = new System.Drawing.Point(193, 12);
+            this.comboBoxTitle.Location = new System.Drawing.Point(179, 12);
             this.comboBoxTitle.Name = "comboBoxTitle";
             this.comboBoxTitle.Size = new System.Drawing.Size(151, 28);
             this.comboBoxTitle.TabIndex = 1;
@@ -78,7 +76,7 @@ namespace CustomerViewer
             // 
             this.checkBoxVip.AutoSize = true;
             this.checkBoxVip.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBoxVip.Location = new System.Drawing.Point(155, 127);
+            this.checkBoxVip.Location = new System.Drawing.Point(142, 127);
             this.checkBoxVip.Name = "checkBoxVip";
             this.checkBoxVip.Size = new System.Drawing.Size(55, 24);
             this.checkBoxVip.TabIndex = 6;
@@ -88,7 +86,7 @@ namespace CustomerViewer
             // 
             // textBoxLastName
             // 
-            this.textBoxLastName.Location = new System.Drawing.Point(194, 88);
+            this.textBoxLastName.Location = new System.Drawing.Point(180, 88);
             this.textBoxLastName.Name = "textBoxLastName";
             this.textBoxLastName.Size = new System.Drawing.Size(150, 27);
             this.textBoxLastName.TabIndex = 5;
@@ -96,7 +94,7 @@ namespace CustomerViewer
             // 
             // textBoxFirstName
             // 
-            this.textBoxFirstName.Location = new System.Drawing.Point(194, 50);
+            this.textBoxFirstName.Location = new System.Drawing.Point(180, 50);
             this.textBoxFirstName.Name = "textBoxFirstName";
             this.textBoxFirstName.Size = new System.Drawing.Size(150, 27);
             this.textBoxFirstName.TabIndex = 3;
@@ -104,27 +102,27 @@ namespace CustomerViewer
             // 
             // labelLastName
             // 
-            this.labelLastName.Location = new System.Drawing.Point(38, 91);
+            this.labelLastName.Location = new System.Drawing.Point(55, 91);
             this.labelLastName.Name = "labelLastName";
-            this.labelLastName.Size = new System.Drawing.Size(150, 20);
+            this.labelLastName.Size = new System.Drawing.Size(120, 20);
             this.labelLastName.TabIndex = 4;
             this.labelLastName.Text = "&Last Name:";
             this.labelLastName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // labelFirstName
             // 
-            this.labelFirstName.Location = new System.Drawing.Point(38, 53);
+            this.labelFirstName.Location = new System.Drawing.Point(55, 53);
             this.labelFirstName.Name = "labelFirstName";
-            this.labelFirstName.Size = new System.Drawing.Size(150, 20);
+            this.labelFirstName.Size = new System.Drawing.Size(120, 20);
             this.labelFirstName.TabIndex = 2;
             this.labelFirstName.Text = "&First Name:";
             this.labelFirstName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // labelTitle
             // 
-            this.labelTitle.Location = new System.Drawing.Point(38, 15);
+            this.labelTitle.Location = new System.Drawing.Point(55, 15);
             this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(150, 20);
+            this.labelTitle.Size = new System.Drawing.Size(120, 20);
             this.labelTitle.TabIndex = 0;
             this.labelTitle.Text = "&Title:";
             this.labelTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -213,29 +211,6 @@ namespace CustomerViewer
             this.columnHeaderLastName.Text = "Last Name";
             this.columnHeaderLastName.Width = 120;
             // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(38, 125);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
-            2021,
-            0,
-            0,
-            0});
-            this.numericUpDown1.Minimum = new decimal(new int[] {
-            1921,
-            0,
-            0,
-            0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.ReadOnly = true;
-            this.numericUpDown1.Size = new System.Drawing.Size(79, 27);
-            this.numericUpDown1.TabIndex = 12;
-            this.numericUpDown1.Value = new decimal(new int[] {
-            2021,
-            0,
-            0,
-            0});
-            // 
             // formCustomerEntry
             // 
             this.AcceptButton = this.buttonEnter;
@@ -243,7 +218,6 @@ namespace CustomerViewer
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonReset;
             this.ClientSize = new System.Drawing.Size(382, 553);
-            this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.listViewEntries);
             this.Controls.Add(this.buttonEnter);
             this.Controls.Add(this.buttonReset);
@@ -262,7 +236,6 @@ namespace CustomerViewer
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Customer Entry";
             this.Load += new System.EventHandler(this.FormLoad);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -287,6 +260,5 @@ namespace CustomerViewer
         private System.Windows.Forms.ColumnHeader columnHeaderFirstName;
         private System.Windows.Forms.ColumnHeader columnHeaderLastName;
         private System.Windows.Forms.ToolTip toolTip;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
     }
 }
