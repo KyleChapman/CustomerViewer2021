@@ -138,13 +138,13 @@ namespace CustomerViewer
         }
 
         /// <summary>
-        /// Checks whether the input related to a worker is valid
+        /// Checks whether the input related to a customer is valid
         /// </summary>
         /// <param name="title">The customer's title as a string</param>
         /// <param name="firstName">The customer's first name as a string</param>
         /// <param name="lastName">The customer's last name as a string</param>
         /// <returns></returns>
-        private bool IsWorkerValid(string title, string firstName, string lastName)
+        private bool IsCustomerValid(string title, string firstName, string lastName)
         {
             bool isValid = true;
 
